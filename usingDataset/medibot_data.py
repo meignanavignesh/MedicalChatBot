@@ -1,5 +1,6 @@
 # medibot_dataset.py
 import os
+from pathlib import Path
 import streamlit as st
 from dotenv import load_dotenv
 from langchain_huggingface import HuggingFaceEmbeddings
@@ -10,12 +11,14 @@ from langchain.chains import create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
 
 load_dotenv()
-DB_PATH = "../vectorstore/medquad_faiss_sequential" 
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+DB_PATH = BASE_DIR / "vectorstore" / "medquad_faiss_sequential"
 
 @st.cache_resource
 def get_vectorstore():
     emb = HuggingFaceEmbeddings(model_name="pritamdeka/BioBERT-mnli-snli-scinli-scitail-mednli-stsb")
-    db = FAISS.load_local(DB_PATH, emb, allow_dangerous_deserialization=True)
+    db = FAISS.load_local(str(DB_PATH), emb, allow_dangerous_deserialization=True)
     return db
 
 def main():

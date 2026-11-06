@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 from langchain_groq import ChatGroq
 from langchain_community.vectorstores import FAISS
@@ -10,6 +11,8 @@ from langchain.chains.combine_documents import create_stuff_documents_chain
 
 from dotenv import load_dotenv
 load_dotenv()
+
+BASE_DIR = Path(__file__).resolve().parent
 
 # Step 1: Setup Groq LLM
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
@@ -27,9 +30,9 @@ llm = ChatGroq(
 # Step 2: Connect LLM with FAISS and Create chain
 
 # Load Database
-DB_FAISS_PATH = "vectorstore/db_faiss"
+DB_FAISS_PATH = BASE_DIR / "vectorstore" / "db_faiss"
 embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
-db = FAISS.load_local(DB_FAISS_PATH, embedding_model, allow_dangerous_deserialization=True)
+db = FAISS.load_local(str(DB_FAISS_PATH), embedding_model, allow_dangerous_deserialization=True)
 
 # Step 3: Build RAG chain
 retrieval_qa_chat_prompt = hub.pull("langchain-ai/retrieval-qa-chat")

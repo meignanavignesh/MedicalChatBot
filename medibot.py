@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 import streamlit as st
 
 from langchain_huggingface import HuggingFaceEmbeddings
@@ -9,18 +10,18 @@ from langchain import hub
 from langchain.chains import create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
 
-
 from dotenv import load_dotenv
 load_dotenv()
 
+BASE_DIR = Path(__file__).resolve().parent
+DB_FAISS_PATH = BASE_DIR / "vectorstore" / "db_faiss_sequential"
 
-DB_FAISS_PATH = "vectorstore/db_faiss_sequential"
 @st.cache_resource
 def get_vectorstore():
     embedding_model = HuggingFaceEmbeddings(
         model_name="pritamdeka/BioBERT-mnli-snli-scinli-scitail-mednli-stsb"
     )
-    db = FAISS.load_local("vectorstore/db_faiss_sequential", embedding_model, allow_dangerous_deserialization=True)
+    db = FAISS.load_local(str(DB_FAISS_PATH), embedding_model, allow_dangerous_deserialization=True)
     return db
 
 def set_custom_prompt(custom_prompt_template):
