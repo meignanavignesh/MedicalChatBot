@@ -1,11 +1,11 @@
 # 🏥 Medical AI Chatbot (RAG-Powered)
 
-An intelligent, domain-specific Medical Chatbot powered by **Retrieval-Augmented Generation (RAG)**, combining **BioBERT** medical embeddings, **FAISS** vector search, and **Groq LLaMA 3.1** high-speed LLM inference.
+An intelligent, domain-specific Medical Chatbot powered by **Retrieval-Augmented Generation (RAG)**, combining **BioBERT** medical embeddings, **FAISS** vector search, and **Groq** (`openai/gpt-oss-20b`) high-speed LLM inference.
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://streamlit.io)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![LangChain](https://img.shields.io/badge/LangChain-RAG-green.svg)](https://www.langchain.com/)
-[![Groq](https://img.shields.io/badge/Groq-LLaMA--3.1-orange.svg)](https://groq.com/)
+[![Groq](https://img.shields.io/badge/Groq-Cloud-orange.svg)](https://groq.com/)
 
 ---
 
@@ -17,7 +17,7 @@ The **Medical Chatbot** retrieves relevant context from a curated medical knowle
 - **Frontend / UI**: Streamlit Chat Interface (`st.chat_message`, `st.chat_input`).
 - **Embeddings**: `pritamdeka/BioBERT-mnli-snli-scinli-scitail-mednli-stsb` (domain-tuned on biomedical NLI).
 - **Vector Store**: FAISS (Facebook AI Similarity Search) index pre-indexed for sub-second retrieval.
-- **LLM**: Groq LLaMA 3.1 (`llama-3.1-8b-instant`) for fast response generation.
+- **LLM**: Groq (`openai/gpt-oss-20b`) for fast response generation.
 - **Orchestration**: LangChain `create_retrieval_chain` + `create_stuff_documents_chain`.
 
 ---

@@ -50,7 +50,7 @@ def main():
                 st.error("Failed to load the vector store")
 
             GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
-            GROQ_MODEL_NAME = "llama-3.1-8b-instant"  # Change to any supported Groq model
+            GROQ_MODEL_NAME = "openai/gpt-oss-20b"  # Supported Groq model
             llm = ChatGroq(
                 model=GROQ_MODEL_NAME,
                 temperature=0.5,

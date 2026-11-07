@@ -59,7 +59,7 @@ def test_verification():
     fake_key = "gsk_test_mock_key_for_verification_only"
     os.environ["GROQ_API_KEY"] = fake_key
     from langchain_groq import ChatGroq
-    llm = ChatGroq(model="llama-3.1-8b-instant", api_key=os.environ.get("GROQ_API_KEY"))
+    llm = ChatGroq(model="openai/gpt-oss-20b", api_key=os.environ.get("GROQ_API_KEY"))
     assert llm.groq_api_key.get_secret_value() == fake_key, "Groq API key mismatch!"
     del os.environ["GROQ_API_KEY"]
     print("      Secure Groq API key loading verified!")

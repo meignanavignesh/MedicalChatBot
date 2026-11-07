@@ -42,7 +42,7 @@ def main():
 
             # LLM setup (Groq)
             GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
-            GROQ_MODEL_NAME = "llama-3.1-8b-instant"
+            GROQ_MODEL_NAME = "openai/gpt-oss-20b"
             llm = ChatGroq(model=GROQ_MODEL_NAME, temperature=0.2, max_tokens=512, api_key=GROQ_API_KEY)
 
             # Use retrieval qa chat prompt or custom
